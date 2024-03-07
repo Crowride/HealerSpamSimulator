@@ -83,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             document.body.removeChild(yellowClick);
         }, 250);
+        previousStreak = currentStreak;
+        currentStreak = 0;
+        updateCounter();
     }
 //Middle option in healer right click menu
     function correctHealerOption() {
@@ -126,6 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             document.body.removeChild(yellowClick);
         }, 250);
+        previousStreak = currentStreak;
+        currentStreak = 0;
+        updateCounter();
     }
 //Left click logic
     document.addEventListener("mousedown", function (event) {
