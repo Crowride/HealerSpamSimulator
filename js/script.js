@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
     const backgroundImage = new Image();
-    backgroundImage.src = "/assets/w7spam.png";
+    backgroundImage.src = "./assets/w7spam.png";
     const inventoryImage = new Image();
     const foodImage = new Image();
     let currentStreak = 0;
@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     setTimeout(function () {
-        inventoryImage.src = "/assets/inventory.png";
+        inventoryImage.src = "./assets/inventory.png";
     }, 300);
 
     setTimeout(function () {
-        foodImage.src = "/assets/defaultstate.png";
+        foodImage.src = "./assets/defaultstate.png";
     }, 500);
 //Food streak update
     function updateCounter() {
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 650);
 
         const redClick = document.createElement("img");
-        redClick.src = "/assets/red_click.gif";
+        redClick.src = "./assets/red_click.gif";
         redClick.style.position = "absolute";
         redClick.draggable = false;
 
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //Top option in healer right click menu
     function wrongHealerOption() {
         const yellowClick = document.createElement("img");
-        yellowClick.src = "/assets/yellow_click.gif";
+        yellowClick.src = "./assets/yellow_click.gif";
         yellowClick.style.position = "absolute";
         yellowClick.draggable = false;
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 650);
 
         const redClick = document.createElement("img");
-        redClick.src = "/assets/red_click.gif";
+        redClick.src = "./assets/red_click.gif";
         redClick.style.position = "absolute";
         redClick.draggable = false;
 
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //Bottom option in healer right click menu
     function cancelMenuOption() {
         const yellowClick = document.createElement("img");
-        yellowClick.src = "/assets/yellow_click.gif";
+        yellowClick.src = "./assets/yellow_click.gif";
         yellowClick.style.position = "absolute";
         yellowClick.draggable = false;
 
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //hides the menus if u click anywhere and sets the foodImage back to defaultstate
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
-            foodImage.src = "/assets/defaultstate.png"
+            foodImage.src = "./assets/defaultstate.png"
             
             const foodArea = {
                 x: 658,
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientY >= canvasRect.top + foodClickableArea.minY &&
                 event.clientY <= canvasRect.top + foodClickableArea.maxY
             ) {
-                foodImage.src = "/assets/usestate.png";
+                foodImage.src = "./assets/usestate.png";
             }
         }
     });
