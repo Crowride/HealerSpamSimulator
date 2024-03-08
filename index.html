@@ -12,7 +12,15 @@
     <h1>Healer spam sim</h1>
     <p>any feedback please DM crowride on discord <br>
         <br>
-    current streak resets every ~.6s of not using a food</p>
+    left click spam or right click spam (second option) to get the streak started
+    <br>
+    current streak resets every ~.6s of not using a food, also resets if you misclick on rightclick menu</p>
+    <!--
+    <div class="buttons-container">
+        <button onclick="invStateChange()">Change inventory</button>
+        <button onclick="zoomOut()">Zoom out</button>
+        <button onclick="zoomIn()">Zoom in</button>
+    </div>-->
     <canvas id="gameCanvas" width="893" height="583"></canvas>
     <div class="session-info">
         <div id="hiscoreDisplay">Highest streak: 0</div>
@@ -25,9 +33,14 @@
         <img src="./assets/rightclick.png" usemap="#imageMap">
         
         <map class="test" name="imageMap">
-            <area shape="rect" coords="2,21,310,41" onclick="wrongHealerOption()">
-            <area shape="rect" coords="2,58,310,41" onclick="correctHealerOption()">
-            <area shape="rect" coords="2,58,310,76" onclick="cancelMenuOption()">
+            <area shape="rect" coords="2,39,308,22" onclick="wrongHealerOption()">
+            <area shape="rect" coords="2,39,308,60" onclick="correctHealerOption()">
+            <area shape="rect" coords="2,60,308,76" onclick="cancelMenuOption()">
+            <!--
+//<area shape="rect" coords="2,21,310,41" onclick="wrongHealerOption()">
+//<area shape="rect" coords="2,58,310,41" onclick="correctHealerOption()">
+//<area shape="rect" coords="2,58,310,76" onclick="cancelMenuOption()">
+            -->
         </map>
         
         <div class="healer-menu-text row1">

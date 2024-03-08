@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
             foodImage.src = "./assets/defaultstate.png"
+
             
             const foodArea = {
                 x: 658,
@@ -184,10 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 width: 235,
                 height: 320
             };
-//Clears the foodImage and inventoryImage (x,y,width,height)
-            context.clearRect(658, 263, 235, 320);
-//Redraws foodImage and inventoryImage (x,y,width,height)
-            context.drawImage(inventoryImage, 658, 263, 235, 320);
 
             if (
                 event.clientX >= canvasRect.left + foodClickableArea.minX &&
@@ -197,6 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
                 foodImage.src = "./assets/usestate.png";
             }
+//Clears the foodImage and inventoryImage (x,y,width,height)
+            context.clearRect(658, 263, 235, 320);
+//Redraws foodImage and inventoryImage (x,y,width,height)
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
         }
     });
 //Right click logic
