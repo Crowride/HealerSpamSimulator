@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(function () {
             document.body.removeChild(yellowClick);
-        }, 250);
+        }, 220);
         previousStreak = currentStreak;
         currentStreak = 0;
         updateCounter();
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currentStreak = 0;
             updateCounter();
         }, 650);
-
+        
         const redClick = document.createElement("img");
         redClick.src = "./assets/red_click.gif";
         redClick.style.position = "absolute";
@@ -109,26 +109,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(function () {
             document.body.removeChild(redClick);
-        }, 250);
+        }, 220);
 
         currentStreak++;
         updateCounter();
     }
 //Bottom option in healer right click menu
     function cancelMenuOption() {
-        const yellowClick = document.createElement("img");
-        yellowClick.src = "./assets/yellow_click.gif";
-        yellowClick.style.position = "absolute";
-        yellowClick.draggable = false;
-
-        yellowClick.style.left = event.clientX - 8 + "px";
-        yellowClick.style.top = event.clientY - 8 + "px";
-
-        document.body.appendChild(yellowClick);
-
-        setTimeout(function () {
-            document.body.removeChild(yellowClick);
-        }, 250);
         previousStreak = currentStreak;
         currentStreak = 0;
         updateCounter();
@@ -177,14 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
             foodImage.src = "./assets/defaultstate.png"
-
-            
-            const foodArea = {
-                x: 658,
-                y: 263,
-                width: 235,
-                height: 320
-            };
 
             if (
                 event.clientX >= canvasRect.left + foodClickableArea.minX &&
