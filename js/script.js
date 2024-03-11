@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let previousStreak = 0;
     const counterDisplay = document.getElementById("counterDisplay");
     let resetTickInterval;
+    let instructionsContainer = document.getElementById("instructionsContainer");
+    let hideButton = document.getElementById("hideButton");
 
     backgroundImage.onload = function () {
         context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         foodImage.src = "./assets/defaultstate.png";
     }, 500);
+
 //Food streak update
     function updateCounter() {
         counterDisplay.textContent = "Current streak: " + currentStreak;
@@ -236,5 +239,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isMouseNearMisMenu) {
             misclickImage.style.display = "none";
         }
+    });
+
+    hideButton.addEventListener("click", function () {
+        instructionsContainer.classList.toggle("hide-button");
     });
 });

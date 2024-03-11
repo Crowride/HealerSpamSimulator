@@ -86,3 +86,11 @@ p {
 .healer-menu-text a:hover {
     color: rgb(255, 255, 0);
 }
+
+.hide-button {
+    display: none;
+}
+
+#hideButton {
+    margin: 10px 0px;
+}
