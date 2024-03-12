@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let resetTickInterval;
     let instructionsContainer = document.getElementById("instructionsContainer");
     let hideButton = document.getElementById("hideButton");
+    const wrongArea = document.getElementById("wrongArea");
+    const correctArea = document.getElementById("correctArea");
+    const cancelArea = document.getElementById("cancelArea");
 
     backgroundImage.onload = function () {
         context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -150,19 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
                 leftClickHealer();
             }
-
-            if (event.target.tagName.toLowerCase() === 'area') {
-                const clickedAreaFunction = event.target.getAttribute('onclick');
-                if (clickedAreaFunction === 'correctHealerOption()') {
-                    correctHealerOption();
-                }
-                if (clickedAreaFunction === 'wrongHealerOption()') {
-                    wrongHealerOption();
-                }
-                if (clickedAreaFunction === 'cancelMenuOption()') {
-                    cancelMenuOption();
-                }
-            }
 //hides the menus if u click anywhere and sets the foodImage back to defaultstate
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
@@ -243,5 +233,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideButton.addEventListener("click", function () {
         instructionsContainer.classList.toggle("hide-button");
+    });
+
+    wrongArea.addEventListener("mousedown", function () {
+       if (event.button === 0) {
+        wrongHealerOption();
+        }
+    });
+
+    correctArea.addEventListener("mousedown", function () {
+        if (event.button === 0) {
+        correctHealerOption();
+        }
+    });
+
+    cancelArea.addEventListener("mousedown", function () {
+        if (event.button === 0) {
+        cancelMenuOption();
+        }
     });
 });
