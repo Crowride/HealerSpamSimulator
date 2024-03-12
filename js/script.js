@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const context = canvas.getContext("2d");
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
-    const backgroundImage = new Image();
-    backgroundImage.src = "./assets/w7spam.png";
+    let backgroundImage = new Image();
+    backgroundImage.src = "./assets/defaultzoom.png";
     const inventoryImage = new Image();
     const foodImage = new Image();
     let currentStreak = 0;
@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const wrongArea = document.getElementById("wrongArea");
     const correctArea = document.getElementById("correctArea");
     const cancelArea = document.getElementById("cancelArea");
+    let healerClickableArea = {
+        minX: 505,
+        maxX: 630,
+        minY: 120,
+        maxY: 430
+    };
+    const foodClickableArea = {
+        minX: 675,
+        maxX: 720,
+        minY: 530,
+        maxY: 568
+    };
 
     backgroundImage.onload = function () {
         context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -42,6 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //Food streak update
     function updateCounter() {
         counterDisplay.textContent = "Current streak: " + currentStreak;
+            if (currentStreak === 0 && previousStreak > currentStreak) {
+                previousDisplay.textContent = "Previous Streak: " + previousStreak;
+            }
             if (currentStreak === 0 && previousStreak > highestStreak) {
                 highestStreak = previousStreak;
                 hiscoreDisplay.textContent = "Highest streak: " + highestStreak;
@@ -70,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             document.body.removeChild(redClick);
         }, 250);
-
         currentStreak++;
         updateCounter();
     }
@@ -130,18 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("mousedown", function (event) {
         if (event.button === 0) {
             const canvasRect = canvas.getBoundingClientRect();
-            const foodClickableArea = {
-                minX: 675,
-                maxX: 720,
-                minY: 530,
-                maxY: 568
-            };
-            const healerClickableArea = {
-                minX: 490,
-                maxX: 615,
-                minY: 110,
-                maxY: 470
-            };
 //Checks if left click happens inside healerClickableArea and food is selected      
             if (
                 event.clientX >= canvasRect.left + healerClickableArea.minX &&
@@ -176,12 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.addEventListener("mousedown", function (event) {
         if (event.button === 2) {
             const canvasRect = canvas.getBoundingClientRect();
-            const healerClickableArea = {
-                minX: 490,
-                maxX: 615,
-                minY: 110,
-                maxY: 470
-            };
 //Checks if right click happens inside healerClickableArea and food is selected
 //If not, displays cancel menu
             if (
@@ -252,4 +248,90 @@ document.addEventListener("DOMContentLoaded", function () {
         cancelMenuOption();
         }
     });
+    zoomButton140.addEventListener("click", function () {
+        backgroundImage.src = "./assets/140zoom.png"
+        healerClickableArea = {
+            minX: 540,
+            maxX: 657,
+            minY: 65,
+            maxY: 480
+        };
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        setTimeout(function () {
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
+        }, 300);
+        setTimeout(function () {
+            context.drawImage(foodImage, 672, 525, 50, 45)
+        }, 500);
+    })
+    zoomButton120.addEventListener("click", function () {
+        
+        backgroundImage.src = "./assets/120zoom.png"
+        healerClickableArea = {
+            minX: 505,
+            maxX: 660,
+            minY: 93,
+            maxY: 440
+        };
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        setTimeout(function () {
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
+        }, 300);
+        setTimeout(function () {
+            context.drawImage(foodImage, 672, 525, 50, 45)
+        }, 500);
+    })
+    zoomButton100.addEventListener("click", function () {
+        backgroundImage.src = "./assets/defaultzoom.png"
+        healerClickableArea = {
+            minX: 505,
+            maxX: 630,
+            minY: 120,
+            maxY: 430
+        };
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        setTimeout(function () {
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
+        }, 300);
+        setTimeout(function () {
+            context.drawImage(foodImage, 672, 525, 50, 45)
+        }, 500);
+    })
+    zoomButton80.addEventListener("click", function () {
+        backgroundImage.src = "./assets/80zoom.png"
+        healerClickableArea = {
+            minX: 500,
+            maxX: 600,
+            minY: 155,
+            maxY: 405
+        };
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        setTimeout(function () {
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
+        }, 300);
+        setTimeout(function () {
+            context.drawImage(foodImage, 672, 525, 50, 45)
+        }, 500);
+    })
+    zoomButton60.addEventListener("click", function () {
+        backgroundImage.src = "./assets/60zoom.png"
+        healerClickableArea = {
+            minX: 485,
+            maxX: 565,
+            minY: 185,
+            maxY: 390
+        };
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        setTimeout(function () {
+            context.drawImage(inventoryImage, 658, 263, 235, 320);
+        }, 300);
+        setTimeout(function () {
+            context.drawImage(foodImage, 672, 525, 50, 45)
+        }, 500);
+    })
 });

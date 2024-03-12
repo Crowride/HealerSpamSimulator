@@ -16,18 +16,20 @@
     <br>
     current streak resets every ~.6s of not using a food or if you misclick within rightclick menu
     <br>
-    note: the healer clickbox extends into the wall a bit, dont need to specifically on the visible part</p>
+    note: the healer clickbox extends into the wall a bit, dont need to specifically click on the visible part</p>
 </div>
+<div class="button-container">
     <button id="hideButton">Hide/show instructions</button>
-    <!--
-    <div class="buttons-container">
-        <button id="" onclick="invStateChange()">Change inventory</button>
-        <button id="" onclick="zoomOut()">Zoom out</button>
-        <button id="" onclick="zoomIn()">Zoom in</button>
-    </div>-->
+        <button id="zoomButton60">60%</button>
+        <button id="zoomButton80">80%</button>
+        <button id="zoomButton100">100% (default)</button>
+        <button id="zoomButton120">120%</button>
+        <button id="zoomButton140">140%</button>
+    </div>
     <canvas id="gameCanvas" width="893" height="583"></canvas>
     <div class="session-info">
-        <div id="hiscoreDisplay">Highest streak: 0</div>
+        <div id="hiscoreDisplay">Highest streak: N/A</div>
+        <div id="previousDisplay">Previous streak: N/A</div>
         <div id="counterDisplay">Current streak: 0</div>
     </div>
 

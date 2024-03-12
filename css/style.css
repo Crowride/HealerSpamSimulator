@@ -34,8 +34,8 @@ p {
     font-size: 20px;
 }
 
-#hiscoreDisplay, #counterDisplay {
-    margin: 10px 220px;
+#hiscoreDisplay, #counterDisplay, #previousDisplay {
+    margin: 10px 70px;
     width: 200px;
 }
 
@@ -93,4 +93,8 @@ p {
 
 #hideButton {
     margin: 10px 0px;
+}
+
+#zoomButton60 {
+    margin-left: 50px;
 }
