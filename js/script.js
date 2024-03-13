@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
         redClick.style.position = "absolute";
         redClick.draggable = false;
 
-        redClick.style.left = event.clientX - 8 + "px";
-        redClick.style.top = event.clientY - 8 + "px";
+        redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
+        redClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
         document.body.appendChild(redClick);
 
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         yellowClick.style.position = "absolute";
         yellowClick.draggable = false;
 
-        yellowClick.style.left = event.clientX - 8 + "px";
-        yellowClick.style.top = event.clientY - 8 + "px";
+        yellowClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
+        yellowClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
         document.body.appendChild(yellowClick);
 
@@ -122,8 +122,8 @@ document.addEventListener("DOMContentLoaded", function () {
         redClick.style.position = "absolute";
         redClick.draggable = false;
 
-        redClick.style.left = event.clientX - 8 + "px";
-        redClick.style.top = event.clientY - 8 + "px";
+        redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
+        redClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
         document.body.appendChild(redClick);
 
