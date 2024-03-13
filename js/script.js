@@ -1,23 +1,28 @@
-//Code is a mess cus im a dog at js, shoutout chatgpt and google
+//Code is a mess cus im a dog at js :[
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("gameCanvas");
     const context = canvas.getContext("2d");
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
-    let backgroundImage = new Image();
-    backgroundImage.src = "./assets/defaultzoom.png";
-    const inventoryImage = new Image();
-    const foodImage = new Image();
-    let currentStreak = 0;
-    let highestStreak = 0;
-    let previousStreak = 0;
-    const counterDisplay = document.getElementById("counterDisplay");
-    let resetTickInterval;
-    let instructionsContainer = document.getElementById("instructionsContainer");
-    let hideButton = document.getElementById("hideButton");
+    const redClick = new Image();
     const wrongArea = document.getElementById("wrongArea");
     const correctArea = document.getElementById("correctArea");
     const cancelArea = document.getElementById("cancelArea");
+    const counterDisplay = document.getElementById("counterDisplay");
+    redClick.src = "./assets/red_click.gif";
+    const yellowClick = new Image();
+    yellowClick.src = "./assets/yellow_click.gif";
+    const inventoryImage = new Image();
+    inventoryImage.src = "";
+    let backgroundImage = new Image();
+    backgroundImage.src = "./assets/defaultzoom.png";
+    let foodImage = new Image();
+    let currentStreak = 0;
+    let highestStreak = 0;
+    let previousStreak = 0;
+    let resetTickInterval;
+    let instructionsContainer = document.getElementById("instructionsContainer");
+    let hideButton = document.getElementById("hideButton");
     let healerClickableArea = {
         minX: 505,
         maxX: 630,
@@ -72,11 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCounter();
         }, 650);
 
-        const redClick = document.createElement("img");
-        redClick.src = "./assets/red_click.gif";
         redClick.style.position = "absolute";
         redClick.draggable = false;
-
         redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
         redClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
@@ -84,17 +86,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(function () {
             document.body.removeChild(redClick);
-        }, 250);
+        }, 220);
         currentStreak++;
         updateCounter();
     }
 //Top option in healer right click menu
     function wrongHealerOption() {
-        const yellowClick = document.createElement("img");
-        yellowClick.src = "./assets/yellow_click.gif";
         yellowClick.style.position = "absolute";
         yellowClick.draggable = false;
-
         yellowClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
         yellowClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
@@ -117,11 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCounter();
         }, 650);
         
-        const redClick = document.createElement("img");
-        redClick.src = "./assets/red_click.gif";
         redClick.style.position = "absolute";
         redClick.draggable = false;
-
         redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
         redClick.style.top = event.clientY - 8 + window.pageYOffset + "px";
 
@@ -155,11 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
                 leftClickHealer();
             }
-//hides the menus if u click anywhere and sets the foodImage back to defaultstate
+//Hides the menus if u click anywhere and sets the foodImage back to defaultstate
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
             foodImage.src = "./assets/defaultstate.png"
-
             if (
                 event.clientX >= canvasRect.left + foodClickableArea.minX &&
                 event.clientX <= canvasRect.left + foodClickableArea.maxX &&
@@ -230,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     hideButton.addEventListener("click", function () {
         instructionsContainer.classList.toggle("hide-button");
     });
-
+//Areas within #healerMenuClickBox map
     wrongArea.addEventListener("mousedown", function () {
        if (event.button === 0) {
         wrongHealerOption();
@@ -248,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cancelMenuOption();
         }
     });
+//Zoom options
     zoomButton140.addEventListener("click", function () {
         backgroundImage.src = "./assets/140zoom.png"
         healerClickableArea = {
@@ -265,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
             context.drawImage(foodImage, 672, 525, 50, 45)
         }, 500);
     })
+
     zoomButton120.addEventListener("click", function () {
         
         backgroundImage.src = "./assets/120zoom.png"
@@ -283,6 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
             context.drawImage(foodImage, 672, 525, 50, 45)
         }, 500);
     })
+
     zoomButton100.addEventListener("click", function () {
         backgroundImage.src = "./assets/defaultzoom.png"
         healerClickableArea = {
@@ -300,6 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
             context.drawImage(foodImage, 672, 525, 50, 45)
         }, 500);
     })
+
     zoomButton80.addEventListener("click", function () {
         backgroundImage.src = "./assets/80zoom.png"
         healerClickableArea = {
@@ -317,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
             context.drawImage(foodImage, 672, 525, 50, 45)
         }, 500);
     })
+
     zoomButton60.addEventListener("click", function () {
         backgroundImage.src = "./assets/60zoom.png"
         healerClickableArea = {
