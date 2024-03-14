@@ -4,16 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const context = canvas.getContext("2d");
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
-    const redClick = new Image();
     const wrongArea = document.getElementById("wrongArea");
     const correctArea = document.getElementById("correctArea");
     const cancelArea = document.getElementById("cancelArea");
     const counterDisplay = document.getElementById("counterDisplay");
+    const redClick = new Image();
     redClick.src = "./assets/red_click.gif";
     const yellowClick = new Image();
     yellowClick.src = "./assets/yellow_click.gif";
     const inventoryImage = new Image();
-    inventoryImage.src = "";
     let backgroundImage = new Image();
     backgroundImage.src = "./assets/defaultzoom.png";
     let foodImage = new Image();
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         minY: 120,
         maxY: 430
     };
-    const foodClickableArea = {
+    let foodClickableArea = {
         minX: 675,
         maxX: 720,
         minY: 530,
