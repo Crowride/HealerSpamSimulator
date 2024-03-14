@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const context = canvas.getContext("2d");
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
-    const wrongArea = document.getElementById("wrongArea");
-    const correctArea = document.getElementById("correctArea");
-    const cancelArea = document.getElementById("cancelArea");
+    const topHealerMenu = document.getElementById("topHealerMenu");
+    const middleHealerMenu = document.getElementById("middleHealerMenu");
+    const bottomHealerMenu = document.getElementById("bottomHealerMenu");
     const counterDisplay = document.getElementById("counterDisplay");
     const redClick = new Image();
     redClick.src = "./assets/red_click.gif";
@@ -224,20 +224,20 @@ document.addEventListener("DOMContentLoaded", function () {
     hideButton.addEventListener("click", function () {
         instructionsContainer.classList.toggle("hide-button");
     });
-//Areas within #healerMenuClickBox map
-    wrongArea.addEventListener("mousedown", function () {
+//Clickable divs within healerMenu
+    topHealerMenu.addEventListener("mousedown", function () {
        if (event.button === 0) {
         wrongHealerOption();
         }
     });
 
-    correctArea.addEventListener("mousedown", function () {
+    middleHealerMenu.addEventListener("mousedown", function () {
         if (event.button === 0) {
         correctHealerOption();
         }
     });
 
-    cancelArea.addEventListener("mousedown", function () {
+    bottomHealerMenu.addEventListener("mousedown", function () {
         if (event.button === 0) {
         cancelMenuOption();
         }

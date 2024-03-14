@@ -4,6 +4,7 @@ body {
     flex-direction: column;
     margin: 0;
     background-color: rgb(29, 28, 28);
+    font-family: Arial, sans-serif;
 }
 html {
     user-select: none;
@@ -13,7 +14,6 @@ p {
     width: 893px;
     font-size: 18px;
     color: white;
-    font-family: Arial, sans-serif;
 }
 
 .buttons-container {
@@ -29,7 +29,6 @@ p {
 .session-info {
     display: flex;
     color: white;
-    font-family: Arial, sans-serif;
     font-size: 20px;
 }
 
@@ -53,23 +52,21 @@ p {
 .healer-menu-text {
     position: absolute;
     color: white;
-    font-family: Arial, sans-serif;
     width: 100%;
     letter-spacing: 2px;
-    pointer-events: none;
 }
 
-.row1 {
+.healer-menu-text.row1 {
     top: 27%;
     left: 1%;
 }
 
-.row2 {
+.healer-menu-text.row2 {
     top: 48%;
     left: 1%;
 }
 
-.row3 {
+.healer-menu-text.row3 {
     top: 69%;
     left: 1%;
 }
@@ -81,9 +78,9 @@ p {
     letter-spacing: 1px;
     font-size: 15px;
 }
-/*Hover effect does not work yet, conflicts with pointer-events*/
+
 .healer-menu-text a:hover {
-    color: rgb(255, 255, 0);
+    color: #E2E200;
 }
 
 .hide-button {

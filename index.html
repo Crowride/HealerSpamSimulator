@@ -42,25 +42,20 @@
     <img src="./assets/misclickmenu.png" id="misclickImage" class="misclickMenu">
     
     <div id="healerMenu" style="display: none;">
-        <img src="./assets/rightclick.png" usemap="#healerMenuClickBox">
+        <img src="./assets/rightclick.png">
         
-        <map name="healerMenuClickBox">
-            <area shape="rect" coords="2,39,308,22" id="wrongArea">
-            <area shape="rect" coords="2,39,308,60" id="correctArea">
-            <area shape="rect" coords="2,60,308,76" id="cancelArea">
-        </map>
-        
-        <div class="healer-menu-text row1">
+        <div class="healer-menu-text row1" id="topHealerMenu">
             <a>Use</a>
         </div>
 
-        <div class="healer-menu-text row2">
+        <div class="healer-menu-text row2" id="middleHealerMenu">
             <a>Use</a>
         </div>
 
-        <div class="healer-menu-text row3">
+        <div class="healer-menu-text row3" id="bottomHealerMenu">
             <a>Cancel</a>
         </div>
+
     </div>
 </body>
 </html>
