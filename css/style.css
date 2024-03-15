@@ -1,6 +1,6 @@
 @font-face {
     font-family: osrsFont;
-    src: url('/assets/runescape.ttf');
+    src: url('./assets/runescape.ttf');
 }
 
 body {
