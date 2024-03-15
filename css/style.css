@@ -15,7 +15,15 @@ html {
     user-select: none;
 }
 
-p {
+b {
+    color: #E2E200;
+}
+
+.button-container {
+    width: 893px;
+}
+
+li {
     width: 893px;
     font-size: 22px;
     color: white;
