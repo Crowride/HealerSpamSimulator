@@ -19,21 +19,29 @@ img {
     -webkit-user-drag: none;
 }
 
+.wrapper {
+    position: relative;
+    width: 893px;
+    height: 583px;
+}
+
 .indicators p {
     position: absolute;
     display: none;
     color: #E2E200;
-    top: 17.2%;
-    left: 37%;
+    top: -1.9%;
+    left: 23%;
     font-size: 18px;
     letter-spacing: 2px;
+    z-index: 3;
 }
 
 .indicators img {
     position: absolute;
     display: none;
-    top: 19%;
-    left: 27%;
+    top: 1%;
+    left: 1%;
+    z-index: 3;
 }
 
 b {
