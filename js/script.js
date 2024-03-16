@@ -245,6 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ) 
         {
             wormHealerIndicator.style.display = "block";
+            wormSelectedIndicator.style.display = "block";
         }
         else {
             wormHealerIndicator.style.display = "none";
@@ -258,9 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
         )
         {
             wormSelectedIndicator.style.display = "block";
-        }
-        else {
-            wormSelectedIndicator.style.display = "none";
+            wormSelectedIndicator.style.display = "block";
         }
         if (
             wormIndicator.style.display === "none" &&
