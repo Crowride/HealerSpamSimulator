@@ -261,17 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
             wormSelectedIndicator.style.display = "block";
             wormSelectedIndicator.style.display = "block";
         }
-        if (
-            wormIndicator.style.display === "none" &&
-            wormHealerIndicator.style.display === "none" &&
-            wormSelectedIndicator.style.display === "none"
-            ) 
-        {
-            defaultIndicator.style.display = "block";
-        }
-        else {
-            defaultIndicator.style.display = "none";
-        }
     });
 
     hideButton.addEventListener("click", function () {
