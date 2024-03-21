@@ -400,6 +400,8 @@ document.addEventListener("DOMContentLoaded", function () {
             minY: 530,
             maxY: 568
             }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             redrawInvFood();
         }
         if (foodPos === 2){
@@ -410,6 +412,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 492,
                 maxY: 530
                 }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             redrawInvFood();
         }
         if (foodPos === 3){
@@ -420,6 +424,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 454,
                 maxY: 492
                 }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             redrawInvFood();
         }
         if (foodPos === 4){
@@ -430,6 +436,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 416,
                 maxY: 454
                 }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             redrawInvFood();
         }
         if (foodPos === 5){
@@ -440,6 +448,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 378,
                 maxY: 416
                 }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);   
             redrawInvFood();
         }
         if (foodPos === 6){
@@ -450,6 +460,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 340,
                 maxY: 378
                 }
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             redrawInvFood();
         }
     });
