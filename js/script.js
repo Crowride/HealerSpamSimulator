@@ -392,6 +392,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let currentFoodPos = parseInt(document.getElementById("foodPos").textContent.replace("Food position: ", ""));
         let foodPos = (currentFoodPos % 6) + 1;
         document.getElementById("foodPos").textContent = "Food position: " + foodPos.toString();
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+        redrawInvFood();
         if (foodPos === 1){
             foodPosY = 525;
             foodClickableArea = {
@@ -400,9 +403,6 @@ document.addEventListener("DOMContentLoaded", function () {
             minY: 530,
             maxY: 568
             }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            redrawInvFood();
         }
         if (foodPos === 2){
             foodPosY = 488;
@@ -412,9 +412,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 492,
                 maxY: 530
                 }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            redrawInvFood();
         }
         if (foodPos === 3){
             foodPosY = 452;
@@ -424,9 +421,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 454,
                 maxY: 492
                 }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            redrawInvFood();
         }
         if (foodPos === 4){
             foodPosY = 415;
@@ -436,9 +430,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 416,
                 maxY: 454
                 }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            redrawInvFood();
         }
         if (foodPos === 5){
             foodPosY = 375;
@@ -448,9 +439,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 378,
                 maxY: 416
                 }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);   
-            redrawInvFood();
         }
         if (foodPos === 6){
             foodPosY = 333;
@@ -460,9 +448,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 minY: 340,
                 maxY: 378
                 }
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            redrawInvFood();
         }
     });
 });
