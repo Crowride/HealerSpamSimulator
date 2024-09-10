@@ -1,12 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
+// Setup
+window.onload = function() {
     const canvas = document.getElementById("gameCanvas");
     const context = canvas.getContext("2d");
+
     const healerMenu = document.getElementById("healerMenu");
     const misclickImage = document.getElementById("misclickImage");
     const topHealerMenu = document.getElementById("topHealerMenu");
     const middleHealerMenu = document.getElementById("middleHealerMenu");
-    const bottomHealerMenu = document.getElementById("bottomHealerMenu");
     const counterDisplay = document.getElementById("counterDisplay");
+
     const redClick = new Image();
     redClick.src = "./assets/red_click.gif";
     const yellowClick = new Image();
@@ -15,12 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let backgroundImage = new Image();
     backgroundImage.src = "./assets/defaultzoom.png";
     let foodImage = new Image();
+
+    let currentTick = 0;
+    let foodQueued = false;
+    let isWhite = true;
+    let squareEnabled = true;
+    let ping = 0;
+
     let currentStreak = 0;
     let highestStreak = 0;
     let previousStreak = 0;
-    let resetTickInterval;
     let instructionsContainer = document.getElementById("instructionsContainer");
     let hideButton = document.getElementById("hideButton");
+
     let foodPosX = 672;
     let foodPosY = 525;
     let healerClickableArea = {
@@ -36,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         maxY: 568
     };
 
+
     backgroundImage.onload = function () {
         context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     };
@@ -50,12 +60,73 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
         inventoryImage.src = "./assets/inventory.png";
-    }, 300);
+    }, 10);
 
     setTimeout(function () {
         foodImage.src = "./assets/defaultstate.png";
-    }, 500);
-//Redraw inventory and foodImage function
+    }, 10);
+
+    const slideValue = document.querySelector("span");
+    const inputSlider = document.querySelector("input");
+    inputSlider.oninput = (()=>{
+        let value = inputSlider.value;
+        slideValue.textContent = value;
+        ping = value;
+    })
+
+    gameTick();
+
+    // Tick loop function
+    function gameTick() {
+        setInterval(function () {
+
+            if (foodQueued === false) {
+                resetStreak();
+            }
+            else {
+                currentStreak = currentStreak + 1;
+            }
+            updateStreakText();
+
+            foodQueued = false;
+
+            if (squareEnabled) {
+                isWhite = !isWhite;
+                let color = isWhite ? 'white' : 'black';
+                drawSquare(color);
+            }
+
+            currentTick = currentTick + 1;
+            console.log(currentTick);
+        }, 600);
+    }
+
+    // Function to draw a white or black square
+    function drawSquare(color) {
+        context.clearRect(858, 238, 25, 25); // Clear the square
+        context.fillStyle = color;
+        context.fillRect(858, 238, 25, 25); // Draw the square
+    }
+
+    // Updates the values of the streaks
+    function resetStreak() {
+        if (currentStreak > highestStreak) {
+            highestStreak = currentStreak;
+        }
+        if (currentStreak !== 0) {
+            previousStreak = currentStreak;
+        }
+        currentStreak = 0;
+    }
+
+    // Update the text of the food streaks
+    function updateStreakText() {
+        counterDisplay.textContent = "Current streak: " + currentStreak;
+        previousDisplay.textContent = "Previous streak: " + previousStreak;
+        hiscoreDisplay.textContent = "Highest streak: " + highestStreak;
+    }
+
+    // Redraw inventory and foodImage function
     function redrawInvFood() {
         setTimeout(function () {
             context.drawImage(inventoryImage, 658, 273, 235, 310);
@@ -64,27 +135,9 @@ document.addEventListener("DOMContentLoaded", function () {
             context.drawImage(foodImage, foodPosX, foodPosY, 50, 45);
         }, 500);
     }
-//Food streak update
-    function updateCounter() {
-        counterDisplay.textContent = "Current streak: " + currentStreak;
-            if (currentStreak === 0 && previousStreak > currentStreak) {
-                previousDisplay.textContent = "Previous streak: " + previousStreak;
-            }
-            if (currentStreak === 0 && previousStreak > highestStreak) {
-                highestStreak = previousStreak;
-                hiscoreDisplay.textContent = "Highest streak: " + highestStreak;
-            }
-    }
-//Left clicking food on a healer
+
+    // Left clicking food on a healer
     function leftClickHealer() {
-        clearInterval(resetTickInterval);
-
-        resetTickInterval = setInterval(function () {
-            previousStreak = currentStreak;
-            currentStreak = 0;
-            updateCounter();
-        }, 650);
-
         redClick.style.position = "absolute";
         redClick.draggable = false;
         redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
@@ -95,10 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             document.body.removeChild(redClick);
         }, 220);
-        currentStreak++;
-        updateCounter();
+        
+        setTimeout(function () {
+            foodQueued = true;
+        }, ping)
     }
-//Top option in healer right click menu
+
+    // Top option in healer right click menu
     function wrongHealerOption() {
         yellowClick.style.position = "absolute";
         yellowClick.draggable = false;
@@ -110,20 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             document.body.removeChild(yellowClick);
         }, 220);
-        previousStreak = currentStreak;
-        currentStreak = 0;
-        updateCounter();
-    }
-//Middle option in healer right click menu
-    function correctHealerOption() {
-        clearInterval(resetTickInterval);
-
-        resetTickInterval = setInterval(function () {
-            previousStreak = currentStreak;
-            currentStreak = 0;
-            updateCounter();
-        }, 650);
         
+        setTimeout(function () {
+            foodQueued = false;
+        }, ping)
+    }
+
+    // Middle option in healer right click menu
+    function correctHealerOption() {
         redClick.style.position = "absolute";
         redClick.draggable = false;
         redClick.style.left = event.clientX - 8 + window.pageXOffset + "px";
@@ -135,20 +185,16 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.removeChild(redClick);
         }, 220);
 
-        currentStreak++;
-        updateCounter();
+        setTimeout(function () {
+            foodQueued = true;
+        }, ping)
     }
-//Bottom option in healer right click menu
-    function cancelMenuOption() {
-        previousStreak = currentStreak;
-        currentStreak = 0;
-        updateCounter();
-    }
-//Left click logic
+
+    // Left click logic
     document.addEventListener("mousedown", function (event) {
         if (event.button === 0) {
             const canvasRect = canvas.getBoundingClientRect();
-//Checks if left click happens inside healerClickableArea and food is selected      
+            // Checks if left click happens inside healerClickableArea and food is selected      
             if (
                 event.clientX >= canvasRect.left + healerClickableArea.minX &&
                 event.clientX <= canvasRect.left + healerClickableArea.maxX &&
@@ -160,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ) {
                 leftClickHealer();
             }
-//Hides the menus if u click anywhere and sets the foodImage back to defaultstate
+            // Hides the menus if u click anywhere and sets the foodImage back to defaultstate
             misclickImage.style.display = "none"
             healerMenu.style.display = "none";
             foodImage.src = "./assets/defaultstate.png"
@@ -173,18 +219,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 foodImage.src = "./assets/usestate.png";
                 wormSelectedIndicator.style.display = "block";
             }
-//Clears the foodImage and inventoryImage (x,y,width,height)
+            // Clears the foodImage and inventoryImage (x,y,width,height)
             context.clearRect(658, 273, 235, 310);
-//Redraws foodImage and inventoryImage (x,y,width,height)
+            // Redraws foodImage and inventoryImage (x,y,width,height)
             context.drawImage(inventoryImage, 658, 273, 235, 310);
         }
     });
-//Right click logic
+
+    //Right click logic
     canvas.addEventListener("mousedown", function (event) {
         if (event.button === 2) {
             const canvasRect = canvas.getBoundingClientRect();
-//Checks if right click happens inside healerClickableArea and food is selected
-//If not, displays cancel menu
+            // Checks if right click happens inside healerClickableArea and food is selected
+            // If not, displays cancel menu
             if (
                 event.clientX >= canvasRect.left + healerClickableArea.minX &&
                 event.clientX <= canvasRect.left + healerClickableArea.maxX &&
@@ -207,11 +254,11 @@ document.addEventListener("DOMContentLoaded", function () {
         wormHealerToolTip.style.display ="none";
         wormToolTip.style.display = "none";
     });
-//Gets rid of the default browser right click menu
+    // Gets rid of the default browser right click menu
     document.addEventListener("contextmenu", function (event) {
         event.preventDefault();
     });
-//Menu closing upon hovering too far
+    // Menu closing upon hovering too far
     canvas.addEventListener("mousemove", function (event) {
         const healerMenuRect = healerMenu.getBoundingClientRect();
         const misMenuRect = misclickImage.getBoundingClientRect();
@@ -235,8 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isMouseNearMisMenu) {
             misclickImage.style.display = "none";
         }
-//Indicator (top left) display logic
-//Worm hover
+        // Indicator (top left) display logic
+        // Worm hover
         if (
             foodImage.src.endsWith("defaultstate.png") &&
             event.clientX >= canvasRect.left + foodClickableArea.minX &&
@@ -254,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
             wormIndicator.style.display = "none";
             wormToolTip.style.display = "none";
         }
-//Worm selected and hovering healer
+        // Worm selected and hovering healer
         if (
             foodImage.src.endsWith("usestate.png") &&
             event.clientX >= canvasRect.left + healerClickableArea.minX &&
@@ -275,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
             wormHealerToolTip.style.display ="none";
             wormHealerIndicator.style.display = "none";
         }
-//Worm selected
+        // Worm selected
         if (
             foodImage.src.endsWith("usestate.png") &&
             !(event.clientX >= canvasRect.left + healerClickableArea.minX &&
@@ -292,7 +339,8 @@ document.addEventListener("DOMContentLoaded", function () {
     hideButton.addEventListener("click", function () {
         instructionsContainer.classList.toggle("hide-button");
     });
-//Clickable divs within healerMenu
+
+    // Clickable divs within healerMenu
     topHealerMenu.addEventListener("mousedown", function (event) {
        if (event.button === 0) {
         wrongHealerOption();
@@ -305,12 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    bottomHealerMenu.addEventListener("mousedown", function (event) {
-        if (event.button === 0) {
-        cancelMenuOption();
-        }
-    });
-//Zoom options
+    // Zoom options
     zoomButton140.addEventListener("click", function () {
         backgroundImage.src = "./assets/140zoom.png"
         healerClickableArea = {
@@ -376,6 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
         context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
         redrawInvFood();
     })
+
     toggleToolTip.addEventListener("click", function(){
         if (document.getElementById("toggleToolTip").textContent === "Mouse tooltip off"){
             wormHealerToolTip.style.opacity = 0;
@@ -388,6 +432,22 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("toggleToolTip").textContent = "Mouse tooltip off"
         }
     })
+
+    toggleTickCounter.addEventListener("click", function() {
+        if (document.getElementById("toggleTickCounter").textContent === "Tick Counter off") {
+            squareEnabled = false;
+            // redraw the image. There would remain a black square if I just cleared the square
+            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+            context.drawImage(inventoryImage, 658, 273, 235, 310);
+            context.drawImage(foodImage, foodPosX, foodPosY, 50, 45);
+            document.getElementById("toggleTickCounter").textContent = "Tick Counter on";
+        }
+        else {
+            squareEnabled = true;
+            document.getElementById("toggleTickCounter").textContent = "Tick Counter off";
+        }
+    })
+
     foodPos.addEventListener("click", function(){
         let currentFoodPos = parseInt(document.getElementById("foodPos").textContent.replace("Food position: ", ""));
         let foodPos = (currentFoodPos % 6) + 1;
@@ -450,4 +510,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
         }
     });
-});
+};

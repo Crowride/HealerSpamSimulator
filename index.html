@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./assets/favicon.png">
-    <script src="./js/script.js" type="module"></script>
+    <script src="./js/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealerSpamSim</title>
@@ -15,15 +15,28 @@
         <br>
         <li>left click spam or right click spam (second option) to get the streak started
         <br>
-        <li>current streak resets every ~.6s of not using a food or if you misclick within rightclick menu
+        <li>current streak resets if you don't use a food every tick
         <br>
         <li>note: the healer clickbox extends into the wall a bit, dont need to specifically click on the visible part</li>
     </ul>
 </div>
 
+<div class="range">
+    <label for="pingSlider" class="ping-label">Ping</label>
+    <div class="sliderValue">
+        <span>0</span>
+    </div>
+    <div class="field">
+        <div class="value left">0</div>
+        <input type="range" min="0" max="400" value="0" id="pingSlider">
+        <div class="value right">400</div>
+    </div>
+</div>
+
 <div class="button-container">
     <button id="hideButton">Hide/show instructions</button>
     <button id="toggleToolTip">Mouse tooltip off</button>
+    <button id="toggleTickCounter">Tick Counter off</button>
     <button id="foodPos">Food position: 1</button>
         <button id="zoomButton60">60%</button>
         <button id="zoomButton80">80%</button>
@@ -44,8 +57,8 @@
 </div>
     
     <div class="session-info">
-        <div id="hiscoreDisplay">Highest streak: N/A</div>
-        <div id="previousDisplay">Previous streak: N/A</div>
+        <div id="hiscoreDisplay">Highest streak: 0</div>
+        <div id="previousDisplay">Previous streak: 0</div>
         <div id="counterDisplay">Current streak: 0</div>
     </div>
 
